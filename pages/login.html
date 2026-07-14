@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Staff Portal Login | The Golden Leaf</title>
+    
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body class="login-body">
+
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h2>THE GOLDEN LEAF</h2>
+                <p>Authorized Personnel Only</p>
+            </div>
+            
+            <form id="adminLoginForm" class="login-form">
+                <div class="form-group">
+                    <label for="adminUsername">Username or Email</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="adminUsername" required placeholder="manager@goldenleaf.com">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="adminPassword">Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="adminPassword" required placeholder="••••••••">
+                    </div>
+                </div>
+                
+                <div class="form-group login-options">
+                    <label class="remember-me">
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn-submit" id="loginBtn">
+                    Authenticate <i class="fas fa-sign-in-alt" style="margin-left: 8px;"></i>
+                </button>
+            </form>
+            
+            <div class="login-footer">
+                <a href="../index.html"><i class="fas fa-arrow-left"></i> Return to Main Website</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mock Login Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('adminLoginForm');
+            const loginBtn = document.getElementById('loginBtn');
+
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Button loading state UX
+                const originalText = loginBtn.innerHTML;
+                loginBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Verifying...';
+                loginBtn.style.opacity = '0.8';
+                loginBtn.style.cursor = 'not-allowed';
+
+                // Simulate network delay (1.5 seconds) for realism
+                setTimeout(() => {
+                    // Redirect to Admin Dashboard
+                    window.location.href = 'admin.html';
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>

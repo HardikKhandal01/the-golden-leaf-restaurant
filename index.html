@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- Phase 22: SEO & Meta Tags -->
+    <title>The Golden Leaf | Premium Dining & Reservations</title>
+    <meta name="description" content="Experience the art of dining at The Golden Leaf. Reserve your table online for premium multi-cuisine dishes and luxury ambiance.">
+    <meta name="keywords" content="premium restaurant, fine dining, table reservation, best restaurant, luxury dining">
+    <meta property="og:title" content="The Golden Leaf | Premium Dining">
+    <meta property="og:description" content="Book your table for an unforgettable culinary experience.">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome & AOS Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+
+    <!-- Phase 10: AI Receptionist Top Banner (Optional/Mockup) -->
+    <div class="ai-top-banner" role="banner">
+        <p>Need instant help? <button id="btnAiAssist" class="btn-text">🎙️ Talk to our AI Receptionist</button></p>
+    </div>
+
+    <!-- Navigation -->
+    <header class="navbar" role="navigation" aria-label="Main Navigation">
+        <div class="logo">
+            <a href="index.html" aria-label="The Golden Leaf Home">THE GOLDEN LEAF</a>
+        </div>
+        <nav class="nav-links">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#menu">Menu</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#reservation" class="btn-reserve-nav">Reserve Table</a>
+        </nav>
+        <!-- Mobile Menu Toggle -->
+        <button class="menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section" aria-labelledby="hero-title">
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                <h5 class="hero-subtitle">WELCOME TO LUXURY</h5>
+                <h1 id="hero-title" class="hero-title">A Symphony of Flavors.</h1>
+                <p class="hero-description">Immerse yourself in world-class culinary artistry crafted by award-winning chefs.</p>
+                <div class="hero-buttons">
+                    <a href="#menu" class="btn-secondary">Explore Menu</a>
+                    <a href="#reservation" class="btn-primary">Book a Table</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phase 3: Live Table Availability Banner -->
+        <section class="live-availability-banner" aria-label="Table Availability">
+            <div class="availability-container" data-aos="fade-up">
+                <div class="stat">
+                    <i class="fas fa-chair"></i>
+                    <span id="liveAvailable">12</span>
+                    <p>Available Now</p>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-calendar-check"></i>
+                    <span id="liveBooked">08</span>
+                    <p>Booked Today</p>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-crown"></i>
+                    <span id="liveVIP">02</span>
+                    <p>VIP Open</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phase 15: Why Choose Us -->
+        <section id="about" class="features-section">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Why Choose Us</h2>
+                <p>The hallmarks of our premium experience</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Fresh Ingredients</h3>
+                    <p>Farm-to-table organic produce daily.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Expert Chefs</h3>
+                    <p>Award-winning culinary team.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-glass-cheers"></i>
+                    <h3>Luxury Dining</h3>
+                    <p>Immaculate ambiance and decor.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-headset"></i>
+                    <h3>24x7 Support</h3>
+                    <p>AI-assisted instant reservations.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phase 14: Chef Section -->
+        <section id="chef" class="chef-section">
+            <div class="chef-container">
+                <div class="chef-image" data-aos="fade-right">
+                    <!-- Placeholder: Replace with local image later -->
+                    <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=600" alt="Executive Chef">
+                </div>
+                <div class="chef-info" data-aos="fade-left">
+                    <h2>Meet Our Executive Chef</h2>
+                    <h3>Alessandro Rossi</h3>
+                    <p>With over 20 years of experience in Michelin-starred restaurants across Europe, Chef Alessandro brings a fusion of traditional techniques and modern innovation to every plate.</p>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Signature_placeholder.png" class="signature" alt="Chef Signature">
+                </div>
+            </div>
+        </section>
+
+        <!-- Phase 1: Menu Upgrade (Rendered dynamically via JS) -->
+        <section id="menu" class="menu-section">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Our Culinary Menu</h2>
+                <p>Over 40+ exquisite delicacies</p>
+            </div>
+            <!-- Menu Filters -->
+            <div class="menu-filters" id="menuFilters" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="starters">Starters</button>
+                <button class="filter-btn" data-filter="mains">Main Course</button>
+                <button class="filter-btn" data-filter="breads">Breads</button>
+                <button class="filter-btn" data-filter="rice">Rice</button>
+                <button class="filter-btn" data-filter="desserts">Desserts</button>
+                <button class="filter-btn" data-filter="drinks">Drinks</button>
+            </div>
+            <!-- Dynamic Grid: JavaScript will inject items here -->
+            <div class="menu-grid" id="menuGrid">
+                <!-- menu.js will populate this -->
+            </div>
+        </section>
+
+        <!-- Phase 16: Masonry Gallery -->
+        <section id="gallery" class="gallery-section">
+            <div class="section-header" data-aos="fade-up">
+                <h2>The Ambience</h2>
+                <p>A glimpse into perfection</p>
+            </div>
+            <div class="masonry-gallery" id="galleryGrid">
+                <!-- Hardcoded for structural demo, can be dynamic -->
+                <div class="gallery-item large" data-aos="zoom-in"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800" alt="Restaurant Interior"></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=400" alt="Food Preparation"></div>
+                <div class="gallery-item tall" data-aos="zoom-in" data-aos-delay="200"><img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=400" alt="Luxury Bar"></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=400" alt="Table Setting"></div>
+            </div>
+        </section>
+
+        <!-- Phase 13: Testimonials (Google Review Style) -->
+        <section id="reviews" class="testimonials-section">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Guest Experiences</h2>
+                <p>What our patrons say about us</p>
+            </div>
+            <div class="reviews-container">
+                <div class="review-card" data-aos="fade-up">
+                    <div class="reviewer">
+                        <img src="https://ui-avatars.com/api/?name=Sarah+J&background=c5a880&color=fff" alt="Sarah J">
+                        <div>
+                            <h4>Sarah Jenkins</h4>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                    <p>"Absolutely breathtaking ambiance and the Truffle Parmesan Fries are to die for. Best dining experience in the city!"</p>
+                </div>
+                <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="reviewer">
+                        <img src="https://ui-avatars.com/api/?name=Michael+R&background=c5a880&color=fff" alt="Michael R">
+                        <div>
+                            <h4>Michael R.</h4>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                        </div>
+                    </div>
+                    <p>"Booked this for our anniversary. The AI booking was smooth, and the table setup was immaculate. Highly recommend the Paneer Butter Masala."</p>
+                </div>
+                <div class="review-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="reviewer">
+                        <img src="https://ui-avatars.com/api/?name=Anita+K&background=c5a880&color=fff" alt="Anita K">
+                        <div>
+                            <h4>Anita Kumar</h4>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                    <p>"The staff is incredibly polite, and the layout of the place screams luxury. Will definitely be returning for my corporate dinners."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phase 2: Upgraded Reservation Form -->
+        <section id="reservation" class="booking-section">
+            <div class="booking-container" data-aos="fade-up">
+                <div class="booking-info">
+                    <h2>Reserve Your Table</h2>
+                    <p>Join us for an unforgettable experience. For events larger than 10, please contact our concierge.</p>
+                    <div class="contact-details">
+                        <p><i class="fas fa-phone-alt"></i> +1 (555) 234-5678</p>
+                        <p><i class="fas fa-envelope"></i> reserve@goldenleaf.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 102 Luxury Blvd, Manhattan, NY</p>
+                    </div>
+                </div>
+                <div class="booking-form-wrapper">
+                    <form id="premiumBookingForm" class="booking-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" required placeholder="+1 234 567 8900">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" required placeholder="john@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="occasion">Occasion</label>
+                                <select id="occasion">
+                                    <option value="Casual">Casual Dining</option>
+                                    <option value="Birthday">Birthday</option>
+                                    <option value="Anniversary">Anniversary</option>
+                                    <option value="Corporate">Corporate</option>
+                                    <option value="Family">Family Dinner</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="bookingDate">Date *</label>
+                                <input type="date" id="bookingDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookingTime">Time Slot *</label>
+                                <select id="bookingTime" required>
+                                    <option value="" disabled selected>Select Time</option>
+                                    <option value="18:00">06:00 PM</option>
+                                    <option value="19:00">07:00 PM</option>
+                                    <option value="20:00">08:00 PM</option>
+                                    <option value="21:00">09:00 PM</option>
+                                    <option value="22:00">10:00 PM</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="guests">Guests *</label>
+                                <input type="number" id="guests" min="1" max="10" required placeholder="2">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Special Requests</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" value="Wheelchair" class="special-req"> Wheelchair Access</label>
+                                <label><input type="checkbox" value="High Chair" class="special-req"> High Chair (Kids)</label>
+                                <label><input type="checkbox" value="Window Seat" class="special-req"> Window Seat Pref.</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group terms-group">
+                            <label class="terms-label">
+                                <input type="checkbox" id="agreeTerms" required> I agree to the <a href="#">Terms & Cancellation Policy</a>.
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn-submit" id="btnSubmitBooking">Secure Reservation</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phase 17 & 18: Success Popup / Receipt Modal -->
+        <div id="successModal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+            <div class="modal-content">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h2>Reservation Confirmed!</h2>
+                <p>An email confirmation has been sent to <span id="receiptEmail" class="highlight"></span>.</p>
+                <div class="receipt-box">
+                    <p><strong>Booking ID:</strong> <span id="receiptId"></span></p>
+                    <p><strong>Date & Time:</strong> <span id="receiptDateTime"></span></p>
+                    <p><strong>Guests:</strong> <span id="receiptGuests"></span></p>
+                    <p><strong>Occasion:</strong> <span id="receiptOccasion"></span></p>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-secondary" id="btnDownloadReceipt"><i class="fas fa-download"></i> Download Receipt</button>
+                    <button class="btn-primary" id="btnCloseModal">Back to Home</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Phase 12: Better Footer -->
+    <footer class="premium-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="footer-logo">THE GOLDEN LEAF</a>
+                <p>Elevating the art of dining through exquisite flavors, premium ambiance, and unparalleled service.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Our Menu</a></li>
+                    <li><a href="#reservation">Reservations</a></li>
+                    <li><a href="pages/login.html" target="_blank" class="admin-link">Staff Login <i class="fas fa-lock"></i></a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Opening Hours</h4>
+                <ul>
+                    <li>Monday - Friday: 5:00 PM - 11:00 PM</li>
+                    <li>Saturday - Sunday: 12:00 PM - 12:00 AM</li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Subscribe for exclusive chef tasting invites.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email Address" required>
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 The Golden Leaf. Built for Premium Portfolio.</p>
+            <div class="legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Phase 11: Floating AI Receptionist Button -->
+    <!-- Href me hum Flask server ka local address de rahe hain, target="_blank" isko naye tab me kholega -->
+    <a href="http://127.0.0.1:5000/" target="_blank" class="floating-ai-btn" aria-label="AI Receptionist Assistant" style="text-decoration: none;">
+    <div class="ai-avatar">🎧</div>
+    <span class="ai-text">Need Help?</span>
+</a>
+
+    <!-- External Libraries -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script> <!-- For Receipt Download -->
+    
+    <!-- Modular Custom Scripts -->
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/menu.js"></script>
+    <script src="assets/js/booking.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Manager Dashboard | The Golden Leaf</title>
+    
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Global Style & Admin Specific Style -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body class="admin-body">
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-logo">
+            <h2>THE GOLDEN LEAF</h2>
+            <p>Admin Portal</p>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="active"><i class="fas fa-chart-pie"></i> Dashboard</a>
+            <a href="#"><i class="fas fa-book-open"></i> All Bookings</a>
+            <a href="#"><i class="fas fa-users"></i> Customers</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="../index.html"><i class="fas fa-arrow-left"></i> Back to Website</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <header class="admin-header">
+            <div>
+                <h1>Reservations Overview</h1>
+                <p>Manage your daily restaurant operations</p>
+            </div>
+            <div class="admin-profile">
+                <span>Manager</span>
+                <img src="https://ui-avatars.com/api/?name=Admin&background=c5a880&color=fff" alt="Admin">
+            </div>
+        </header>
+
+        <!-- Stats Cards (Phase 9) -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <i class="fas fa-ticket-alt"></i>
+                <div class="stat-info">
+                    <h3>Total Reservations</h3>
+                    <p id="statTotalBookings">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-user-friends"></i>
+                <div class="stat-info">
+                    <h3>Guests Today</h3>
+                    <p id="statTodayGuests">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-check-double"></i>
+                <div class="stat-info">
+                    <h3>Completed</h3>
+                    <p id="statCompleted">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-times-circle"></i>
+                <div class="stat-info">
+                    <h3>Cancelled</h3>
+                    <p id="statCancelled">0</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Table Controls (Phase 6, 7, 8) -->
+        <section class="table-controls">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchBooking" placeholder="Search by Name, Phone, or ID...">
+            </div>
+            <div class="filter-actions">
+                <select id="statusFilter">
+                    <option value="All">All Statuses</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+                <button id="btnExportCsv" class="btn-primary"><i class="fas fa-file-csv"></i> Export CSV</button>
+            </div>
+        </section>
+
+        <!-- Data Table (Phase 4, 5) -->
+        <section class="table-container">
+            <table class="premium-table">
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Customer</th>
+                        <th>Date & Time</th>
+                        <th>Guests</th>
+                        <th>Occasion</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="adminTableBody">
+                    <!-- Dynamic Rows Injected via JS -->
+                </tbody>
+            </table>
+            
+            <div id="emptyState" class="empty-state hidden">
+                <i class="fas fa-box-open"></i>
+                <p>No reservations found.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/storage.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

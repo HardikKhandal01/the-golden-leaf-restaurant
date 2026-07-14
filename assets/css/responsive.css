@@ -1,0 +1,206 @@
+/* --- MEDIA QUERIES FOR RESPONSIVENESS --- */
+
+/* Max Width 1200px (Laptops & Small Desktops) */
+@media screen and (max-width: 1200px) {
+    .hero-title {
+        font-size: 3.8rem;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+}
+
+/* Max Width 992px (Tablets Landscape) */
+@media screen and (max-width: 992px) {
+    .section-header h2 {
+        font-size: 2.5rem;
+    }
+    
+    .chef-container {
+        flex-direction: column;
+    }
+    
+    .chef-image,
+    .chef-info {
+        width: 100%;
+    }
+    
+    .chef-image img {
+        height: 400px;
+    }
+    
+    .booking-container {
+        flex-direction: column;
+    }
+    
+    .booking-info,
+    .booking-form-wrapper {
+        width: 100%;
+        border-right: none;
+        padding: 40px 30px;
+    }
+    
+    .booking-info {
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .gallery-item.large {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+    
+    .gallery-item.tall {
+        grid-row: span 1;
+    }
+}
+
+/* Max Width 768px (Tablets Portrait & Large Phones) */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--dark-bg);
+        border-bottom: 1px solid var(--border-color);
+        padding: 20px 0;
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+    
+    .nav-links a {
+        margin: 15px 0;
+        text-align: center;
+    }
+    
+    .btn-reserve-nav {
+        margin-top: 10px;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .availability-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+    }
+    
+    .btn-secondary {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+}
+
+/* Max Width 480px (Mobile Phones) */
+@media screen and (max-width: 480px) {
+    /* Critical to prevent left-to-right scroll on tiny devices */
+    body, html {
+        width: 100%;
+        overflow-x: hidden;
+    }
+    
+    .hero-section,
+    .features-section,
+    .chef-section,
+    .menu-section,
+    .gallery-section,
+    .testimonials-section,
+    .booking-section {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    .btn-primary, 
+    .btn-secondary {
+        width: 100%;
+        text-align: center;
+        padding: 15px 20px;
+    }
+    
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .btn-secondary {
+        margin-bottom: 0;
+    }
+    
+    .menu-filters {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .filter-btn {
+        width: 100%;
+    }
+    
+    .floating-ai-btn {
+        bottom: 20px;
+        right: 20px;
+        padding: 10px;
+    }
+    
+    .ai-text {
+        display: none;
+    }
+    
+    .modal-content {
+        padding: 30px 20px;
+    }
+    
+    .success-icon {
+        font-size: 3rem;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.5rem;
+    }
+}
