@@ -48,7 +48,7 @@ The project follows clean code principles, modular architecture, and responsive 
 ## 🤖 AI Receptionist
 
 <p align="center">
-  <img src="assets/images/AI_Receptionist.png" alt="AI Receptionist" width="100%">
+  <img src="assets/images/AI_Receptionist .png" alt="AI Receptionist" width="100%">
 </p>
 
 ---
