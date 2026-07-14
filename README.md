@@ -32,7 +32,7 @@ The project follows clean code principles, modular architecture, and responsive 
 ## 🏠 Home Page
 
 <p align="center">
-  <img src="assets/images/home_page.png" alt="Home Page" width="100%">
+  <img src="assets/images/home-page.png" alt="Home Page" width="100%">
 </p>
 
 ---
