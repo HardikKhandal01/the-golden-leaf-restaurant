@@ -224,11 +224,11 @@ body.ai-portal-body {
 
 /* --- 3. QUICK ACTIONS (CHIPS) --- */
 .quick-actions {
-    padding: 10px 25px;
+    padding: 10px 15px;
     display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    scrollbar-width: none; /* Firefox */
+    flex-wrap: wrap; /* MAGIC LINE: Agar screen choti hogi to chips automatically neeche wali line me aa jayenge */
+    justify-content: center; /* Chips ko center align karega */
+    gap: 8px;
 }
 
 .quick-actions::-webkit-scrollbar {
@@ -240,9 +240,9 @@ body.ai-portal-body {
     background: transparent;
     border: 1px solid var(--gold-primary);
     color: var(--gold-primary);
-    padding: 8px 16px;
+    padding: 6px 14px; /* Padding thodi choti ki */
     border-radius: 20px;
-    font-size: 0.85rem;
+    font-size: 0.75rem; /* Font size chhota kar diya mobile ke liye */
     font-family: var(--font-body);
     cursor: pointer;
     transition: all 0.3s ease;
@@ -255,7 +255,7 @@ body.ai-portal-body {
 
 /* --- 4. INPUT ENGINE --- */
 .chat-input-area {
-    padding: 20px 25px;
+    padding: 15px 20px 35px 20px;
     background: var(--bg-surface);
     border-top: 1px solid var(--border-subtle);
 }
