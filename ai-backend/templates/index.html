@@ -3,345 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>The Grand Heritage Resort | Luxury Hotel & Banquet</title>
+    <title>Ghoomar AI Concierge | The Golden Leaf</title>
+    
+    <!-- Google Fonts: Premium Typography matching the main site -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Link to our upcoming Masterclass CSS -->
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+<body class="ai-portal-body">
 
-    <nav class="navbar">
-        <div class="nav-logo">THE GRAND HERITAGE</div>
-        <div class="nav-links-wrapper">
-            <ul class="nav-links">
-                <li class="home-menu-item">
-                    <div class="search-container">
-                        <i class="fa-solid fa-magnifying-glass search-icon" onclick="toggleSearch()"></i>
-                        <input type="text" id="nav-search-input" placeholder="Search spaces...">
-                    </div>
-                    <a href="#hero">Home</a>
-                </li>
-                <li><a href="#tour">Virtual Tour</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#rooms">Suites & Lawns</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-        <button class="btn-primary nav-cta-btn" onclick="toggleChat()">Book Direct</button>
-    </nav>
-
-    <section id="hero" class="hero-section">
-        <div class="hero-content">
-            <span class="hero-sub">EXPERIENCE ROYAL HERITAGE LUXURY</span>
-            <h1>Where Royal Traditions Meet Modern Luxury</h1>
-            <p>Bypass aggregate platforms. Book directly through our advanced AI concierge to unlock elite executive rates, free upgrades, and dynamic wedding quotes.</p>
-            <div class="hero-btns">
-                <a href="#tour" class="btn-primary">Explore Suites</a>
-                <button class="btn-secondary" onclick="toggleChat()"><i class="fa-solid fa-robot"></i> Talk to AI</button>
+    <div class="chat-wrapper">
+        <!-- 1. Premium Header -->
+        <header class="chat-header">
+            <div class="brand-info">
+                <div class="ai-avatar-pulse">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>Ghoomar | AI Concierge</h1>
+                    <span class="status-indicator"><i class="fas fa-circle"></i> Secure Server Active</span>
+                </div>
             </div>
-        </div>
-    </section>
+            <div class="header-actions">
+                <button id="clearChatBtn" title="Reset Conversation"><i class="fas fa-sync-alt"></i></button>
+            </div>
+        </header>
 
-    <section id="tour" class="tour-wrapper">
-        <div class="tour-container">
-            <div class="tour-header">
-                <h2>Interactive Suite Exploration</h2>
-                <p>Scroll downward to step deep inside. Click hotspots to analyze luxury metrics.</p>
+        <!-- 2. Main Chat Display Area -->
+        <main class="chat-display" id="chatDisplay">
+            <!-- ChatGPT Recommended: Welcome Card -->
+            <div class="welcome-card">
+                <i class="fas fa-leaf gold-leaf"></i>
+                <h2>The Golden Leaf</h2>
+                <p>Welcome to our exclusive digital concierge. I can assist you with our menu, operating hours, or secure a table reservation for you.</p>
             </div>
             
-            <div class="scene bedroom active-scene">
-                <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=1200&auto=format&fit=crop" alt="Luxury Suite" class="scene-img">
-                
-                <div class="hotspot bed-dot" onclick="showInfo('Premium tailored organic mattresses paired with high-thread Egyptian linen.')">
-                    <i class="fa-solid fa-bed"></i>
-                </div>
-                <div class="hotspot light-dot" onclick="showInfo('Intelligent warm mood systems synchronized for deep physical relaxation.')">
-                    <i class="fa-solid fa-lightbulb"></i>
-                </div>
-                <div class="hotspot door-dot" onclick="switchScene('bathroom')">
-                    <i class="fa-solid fa-door-open"></i> <span class="dot-label">View Bathroom</span>
-                </div>
-            </div>
+            <!-- Dynamic Messages will be injected here via JavaScript -->
+        </main>
 
-            <div class="scene bathroom">
-                <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=1200&auto=format&fit=crop" alt="Luxury Bathroom" class="scene-img">
-                
-                <div class="hotspot tub-dot" onclick="showInfo('Handcrafted standalone deep soaking porcelain tub with elite therapeutic setup.')">
-                    <i class="fa-solid fa-bath"></i>
-                </div>
-                <button class="back-btn" onclick="switchScene('bedroom')"><i class="fa-solid fa-arrow-left"></i> Return</button>
-            </div>
-
-            <div id="info-box" class="hidden">
-                <p id="info-text">Analyzing parameters...</p>
-                <span class="close-btn" onclick="closeInfo()">&times;</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="gallery" class="marquee-grid-section">
-        <div class="section-title">
-            <span>RESORT LOOKBOOK</span>
-            <h2>Outer Facade & Inner Spaces</h2>
-        </div>
-        <div class="marquee-viewport">
-            <div class="marquee-track">
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=600" alt="Resort Facade">
-                    <div class="gallery-desc">
-                        <h4>The Royal Palace Facade</h4>
-                        <p>Architectural grandeur welcoming elite global travellers.</p>
-                    </div>
-                </div>
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=600" alt="Imperial Courtyard">
-                    <div class="gallery-desc">
-                        <h4>Imperial Courtyard Lounge</h4>
-                        <p>Gilded pillars and majestic heritage seating arrangements.</p>
-                    </div>
-                </div>
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=600" alt="Heritage Suite">
-                    <div class="gallery-desc">
-                        <h4>Heritage Vaulted Suite</h4>
-                        <p>Artisanal carved roofs blending with modern high luxury bedding.</p>
-                    </div>
-                </div>
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600" alt="Elite Spa Bath">
-                    <div class="gallery-desc">
-                        <h4>Jacuzzi Wellness Wing</h4>
-                        <p>Italian marble setups integrated with private steam channels.</p>
-                    </div>
-                </div>
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=600" alt="Resort Facade">
-                    <div class="gallery-desc">
-                        <h4>The Royal Palace Facade</h4>
-                        <p>Architectural grandeur welcoming elite global travellers.</p>
-                    </div>
-                </div>
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=600" alt="Imperial Courtyard">
-                    <div class="gallery-desc">
-                        <h4>Imperial Courtyard Lounge</h4>
-                        <p>Gilded pillars and majestic heritage seating arrangements.</p>
-                    </div>
-                </div>
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=600" alt="Heritage Suite">
-                    <div class="gallery-desc">
-                        <h4>Heritage Vaulted Suite</h4>
-                        <p>Artisanal carved roofs blending with modern high luxury bedding.</p>
-                    </div>
-                </div>
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600" alt="Elite Spa Bath">
-                    <div class="gallery-desc">
-                        <h4>Jacuzzi Wellness Wing</h4>
-                        <p>Italian marble setups integrated with private steam channels.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="rooms" class="grid-section">
-        <div class="section-title">
-            <span>OUR LUXURIOUS SPACES</span>
-            <h2>Suites, Banquets & Lawns</h2>
-        </div>
-        
-        <div class="grid-container">
-            <div class="card">
-                <div class="card-img-holder" style="background-image: url('https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=600');"></div>
-                <div class="card-body">
-                    <h3>The Maharaja Executive Suite</h3>
-                    <p>King-size premium bedding, separate high-end guest lounge, private butler service, and complimentary high-speed internet architecture.</p>
-                    <div class="card-footer">
-                        <span class="price">₹4,500 <small>/ Night</small></span>
-                        <button class="btn-card" onclick="toggleChat()">Book Direct</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-img-holder" style="background-image: url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=600');"></div>
-                <div class="card-body">
-                    <h3>The Royal Heritage Banquet & Lawn</h3>
-                    <p>Massive landscaped palace settings customized perfectly to host premium high-volume luxury weddings and majestic events.</p>
-                    <div class="card-footer">
-                        <span class="price">Elite Dynamic Rates</span>
-                        <button class="btn-card" onclick="toggleChat()">Inquire Pricing</button>
-                    </div>
-                </div>
-            </div>
+        <!-- 3. ChatGPT Recommended: Quick Actions / Suggested Prompts -->
+        <div class="quick-actions" id="quickActions">
+            <button class="chip" onclick="sendQuickMessage('What are your opening hours?')">Opening Hours</button>
+            <button class="chip" onclick="sendQuickMessage('I want to book a table')">Book a Table</button>
+            <button class="chip" onclick="sendQuickMessage('What are the Chef Specials?')">Chef Specials</button>
         </div>
 
-        <div class="tier-grid-divider">
-            <span>EXPLORE ALL ACCOMMODATION TIERS</span>
-            <p>Flexible options designed for every budget. Rates are highly negotiable upon direct front-desk reservation.</p>
-        </div>
-
-        <div class="extended-rooms-grid">
-            <div class="card">
-                <div class="card-img-holder" style="background-image: url('https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=600');"></div>
-                <div class="card-body">
-                    <div class="negotiable-badge">Rates Negotiable</div>
-                    <h3>Standard Heritage Room</h3>
-                    <p>Clean, traditional architecture featuring cozy bedding, private bathroom setup, and essential lifestyle amenities.</p>
-                    <div class="card-footer">
-                        <span class="price">₹1,500 <small>/ Night</small></span>
-                        <button class="btn-card" onclick="toggleChat()">Check Dates</button>
-                    </div>
-                </div>
+        <!-- 4. Input Engine -->
+        <footer class="chat-input-area">
+            <div class="input-container">
+                <input type="text" id="userInput" placeholder="Type your request here..." autocomplete="off">
+                <button id="sendBtn"><i class="fas fa-paper-plane"></i></button>
             </div>
-
-            <div class="card">
-                <div class="card-img-holder" style="background-image: url('https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=600');"></div>
-                <div class="card-body">
-                    <div class="negotiable-badge">Rates Negotiable</div>
-                    <h3>Deluxe Comfort Room</h3>
-                    <p>Enhanced spacious interior layout with working desk desk access, split AC setup, and beautifully curated garden views.</p>
-                    <div class="card-footer">
-                        <span class="price">₹2,500 <small>/ Night</small></span>
-                        <button class="btn-card" onclick="toggleChat()">Book Direct</button>
-                    </div>
-                </div>
+            <div class="secure-badge">
+                <i class="fas fa-shield-alt"></i> End-to-End Encrypted Reservation System
             </div>
-
-            <div class="card">
-                <div class="card-img-holder" style="background-image: url('https://images.unsplash.com/photo-1591088398332-8a7791972843?q=80&w=600');"></div>
-                <div class="card-body">
-                    <div class="negotiable-badge">Rates Negotiable</div>
-                    <h3>Super Deluxe Sanctuary</h3>
-                    <p>Premium bedding featuring master balconies, customized smart TV modules, and rich marble finished washroom channels.</p>
-                    <div class="card-footer">
-                        <span class="price">₹3,500 <small>/ Night</small></span>
-                        <button class="btn-card" onclick="toggleChat()">Reserve Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img-holder" style="background-image: url('https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=600');"></div>
-                <div class="card-body">
-                    <div class="negotiable-badge">Rates Negotiable</div>
-                    <h3>Signature Royal Chamber</h3>
-                    <p>Authentic jharokha balconies paired beautifully with handcrafted luxury wooden furniture pieces and custom ambient lights.</p>
-                    <div class="card-footer">
-                        <span class="price">₹5,500 <small>/ Night</small></span>
-                        <button class="btn-card" onclick="toggleChat()">Check Deal</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img-holder" style="background-image: url('https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=600');"></div>
-                <div class="card-body">
-                    <div class="negotiable-badge">Rates Negotiable</div>
-                    <h3>Vintage Courtyard Suite</h3>
-                    <p>Massive master suite layout with separate luxury couch seating, premium minibar, and direct royal private access gate paths.</p>
-                    <div class="card-footer">
-                        <span class="price">₹7,500 <small>/ Night</small></span>
-                        <button class="btn-card" onclick="toggleChat()">Claim Offer</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img-holder" style="background-image: url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=600');"></div>
-                <div class="card-body">
-                    <div class="negotiable-badge">Rates Negotiable</div>
-                    <h3>Imperial Presidential Suite</h3>
-                    <p>The ultimate elite tier statement. Private dining rooms, attached luxury jacuzzi, and unrestricted 24/7 priority butler operations.</p>
-                    <div class="card-footer">
-                        <span class="price">₹12,000 <small>/ Night</small></span>
-                        <button class="btn-card" onclick="toggleChat()">Inquire Suite</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="chat-widget-wrapper">
-        <button class="chat-trigger-btn" onclick="toggleChat()">
-            <i class="fa-solid fa-robot"></i> Ghoomar | AI Concierge
-        </button>
-
-        <div class="chat-container hidden" id="chat-container">
-            <div class="chat-header">
-                <div class="header-info">
-                    <div class="avatar">👑</div>
-                    <div>
-                        <h3>Ghoomar | AI Concierge</h3>
-                        <span class="status">Online | Direct Booking Desk</span>
-                    </div>
-                </div>
-                <button class="close-btn" onclick="toggleChat()">&times;</button>
-            </div>
-            <div class="chat-box" id="chat-box">
-                <div class="message bot-message">Namaste! Welcome to The Grand Heritage Resort. I can instantly assist you with luxury suite bookings or check event slot dates for marriages. How can I serve you today?</div>
-            </div>
-            <div class="input-area">
-                <input type="text" id="user-input" placeholder="Type message or ask about rooms..." onkeypress="handleKeyPress(event)">
-                <button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
-            </div>
-        </div>
+        </footer>
     </div>
 
-    <footer id="contact" class="footer">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h3>THE GRAND HERITAGE</h3>
-                <p>Redefining absolute global hospitality by pairing royal heritage aesthetics with high-performance automated concierge ecosystems.</p>
-                <div class="footer-social-row">
-                    <a href="#" class="social-icon-btn"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="social-icon-btn"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon-btn"><i class="fa-brands fa-telegram"></i></a>
-                    <a href="#" class="social-icon-btn"><i class="fa-brands fa-whatsapp"></i></a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Quick Exploration</h4>
-                <ul class="footer-links-list">
-                    <li><a href="#hero">Home Base Overview</a></li>
-                    <li><a href="#tour">Interactive Suite Tour</a></li>
-                    <li><a href="#gallery">Resort Lookbook Panels</a></li>
-                    <li><a href="#rooms">Banquets & Weddings</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Corporate Details</h4>
-                <ul class="footer-links-list">
-                    <li><a href="#">About Our Builders</a></li>
-                    <li><a href="#">Privacy Protection Policy</a></li>
-                    <li><a href="#">Terms of Stays & Services</a></li>
-                    <li><a href="#">Direct Allocation Matrix</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Direct Desk Contact</h4>
-                <p><i class="fa-solid fa-location-dot"></i> Premium Highway Access Zone, Luxury Hub</p>
-                <p><i class="fa-solid fa-phone"></i> +91 Direct Operational Desk Line</p>
-                <p><i class="fa-solid fa-envelope"></i> management@grandheritageresort.com</p>
-            </div>
-        </div>
-        
-        <div class="footer-disclaimer-wrapper">
-            <p class="disclaimer-text">
-                <strong>@ Disclaimer:</strong> Room tariffs, suite inventories, and priority marriage banquet allocations are subject to dynamic seasonal occupancy variations, localized structural booking conditions, and resort management availability algorithms. Direct booking privileges (0% aggregate platform commissions) apply strictly to logs recorded via the Ghoomar AI Interface pipeline. Please evaluate reservation tokens carefully prior to final locking.
-            </p>
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2026 The Grand Heritage Resort. Engineered and Structured with Absolute Perfection.</p>
-        </div>
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Link to our upcoming Logic Engine -->
     <script src="/static/script.js"></script>
 </body>
 </html>

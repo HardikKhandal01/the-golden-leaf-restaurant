@@ -1,110 +1,164 @@
 import os
+import re
+import logging
+from datetime import datetime
 from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 import google.generativeai as genai
-from twilio.twiml.messaging_response import MessagingResponse
-from twilio.twiml.voice_response import VoiceResponse, Gather
-
-app = Flask(__name__)
-
-# API Key setup (Keeping your stable key configuration)
 from dotenv import load_dotenv
-import os
+
+# -------------------------------------------------------------------
+# 1. ENTERPRISE LOGGING & CONFIGURATION
+# -------------------------------------------------------------------
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - [ReqID: %(process)d] - %(message)s',
+    handlers=[logging.FileHandler("server_operations.log"), logging.StreamHandler()]
+)
+logger = logging.getLogger(__name__)
 
 load_dotenv()
-
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+if not GEMINI_API_KEY:
+    logger.critical("CRITICAL: Gemini API Key missing from environment.")
+    raise ValueError("System Halted: Missing API Key.")
 
 genai.configure(api_key=GEMINI_API_KEY)
 
+# -------------------------------------------------------------------
+# 2. FLASK APP & SECURITY SHIELDS (CORS & RATE LIMITING)
+# -------------------------------------------------------------------
+app = Flask(__name__)
+
+# Strict CORS: Only allowing requests from legitimate origins
+CORS(app, resources={r"/chat": {"origins": "*"}}) # In production, replace "*" with your GitHub Pages URL
+
+# Anti-Spam: Limiting requests per IP to prevent billing fraud
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=["500 per day", "100 per hour"],
+    storage_uri="memory://"
+)
+
+# -------------------------------------------------------------------
+# 3. AI IDENTITY & KNOWLEDGE BASE (RESTAURANT OPTIMIZED)
+# -------------------------------------------------------------------
 # =====================================================================
-# 👑 THE GRAND HERITAGE RESORT - OPERATIONAL EXCELLENCE PROMPT 👑
+# 3. AI IDENTITY & KNOWLEDGE BASE (HYBRID UI OPTIMIZED)
 # =====================================================================
 SYSTEM_PROMPT = """
-You are 'Ghoomar', the ultra-elite, polite, and deeply knowledgeable AI Front Desk Concierge for 'The Grand Heritage Resort'. 
-Your tone must be highly hospitable, professional, and regal (subtly using respectful Indian terms like 'Namaste' or 'Khamma Ghani' when appropriate). Keep your answers concise, structured, and conversion-focused.
+You are 'Ghoomar', the elite AI Reservation Concierge for 'The Golden Leaf Restaurant'.
+Tone: Hospitable, professional, and warmly Indian (use 'Namaste' selectively).
 
-Knowledge Base (Answer ONLY from this strictly verified data):
-1. Who/What is the hotel? -> The Grand Heritage Resort is India's finest premium heritage luxury hotel property, blending traditional architectural grandeur with next-generation 5-star luxury.
-2. Where is it located? -> We are located prominently near the elite Highway Premium Access Zone.
-3. What spaces/inventory do you offer?
-   - The Maharaja Executive Suite: Ultra-luxurious room with king-size premium bedding, private traditional lounge, high-speed Wi-Fi, and 24/7 dedicated butler service. Price is fixed at ₹4,500 per night.
-   - The Royal Heritage Banquet & Lawn: Massive, premium curated spaces designed specifically to host high-end destination marriages, royal anniversaries, and corporate galas. Pricing varies dynamically based on gathering size and curated menus.
-4. What are the perks of booking directly here? -> By bypassing commission-heavy aggregate portals (Oyo, MMT, Booking.com), direct bookers get: Guaranteed lowest room rates, complimentary elite room upgrades upon availability, early check-in, and absolutely zero cancellation platform fees.
-5. Do you serve food? -> Yes, we have an elite in-house fine-dining restaurant serving authentic heritage delicacies alongside global premium cuisines.
-6. Guest Stay & In-house Services (Operational Commands):
-   - Room Upgrades: Intelligently pitch the premium Maharaja Suite to any guest booking normal rooms.
-   - Room Service & Butler Requests: Instantly register requests for housekeeping, extra pillows, fresh water, or plumbing repairs. Say: "I have registered your service request and routed it to our housekeeping team."
-   - Local Guide: Recommend nearby historical sites, local Shekhawati painted havelis, or local transit directions.
-   - Save-The-Sale Retention: If a guest inquiries about a cancellation, explain our flexible policies but actively offer custom alternate dates or a complimentary breakfast voucher to protect the reservation.
+KNOWLEDGE BASE:
+- Timings: 5:00 PM - 11:00 PM (Mon-Fri) | 12:00 PM - 12:00 AM (Weekends).
+- Menu: Truffle Parmesan Fries, Prime Ribeye Steak, Paneer Butter Masala, Chocolate Lava Cake.
 
-7. How to book a room or inquire about a wedding banquet? -> Actively guide the user to share: 
-   - Their Full Name
-   - Phone Number
-   - Dates of check-in/event
-   - Number of rooms or event type (Suite stay vs Marriage party).
-   Once they share these vital details, conclude beautifully with: "Namaste! I have successfully blocked your temporary priority request in our system. Our General Manager will contact you directly on WhatsApp within 10 minutes to share our customized royal layout catalog and lock your booking."
+CRITICAL UI TRIGGERS (HYBRID CHAT):
+You do not ask for booking details one by one. You use rich UI forms. Follow these strict rules:
 
-Handling Out-of-Scope (General/Unrelated) Questions:
-If the user asks questions completely unrelated to the resort operations, rooms, or local guides:
-1. Provide a highly concise, smart, and accurate 1-sentence answer to their query using your advanced creative intelligence.
-2. In the very next sentence, immediately bridge back to the hotel business.
-   Example Bridge: "While I love exploring this topic, my ultimate priority is ensuring your grand stay or wedding celebration here is planned to perfection."
-3. Conclude by pitching our Direct Reservation Assistance Desk: "For custom tariff negotiations or instant slot bookings, you can also directly call our desk anytime at +91 95876 62000."
+RULE 1: If the user indicates they want to book a table, DO NOT ask for their name or date. Instead, reply EXACTLY with this:
+"It would be my pleasure to secure a table for you. Please fill out these quick details:"
+[SHOW_BOOKING_FORM]
+
+RULE 2: The system will silently send you a message starting with "[FORM_SUBMITTED...]". When you receive this, summarize their details elegantly and ask for their final confirmation. You MUST append this to your reply:
+[SHOW_CONFIRMATION_BUTTONS]
+
+RULE 3: If the user clicks Confirm, reply with a warm confirmation, suggest a signature dish or ask if they want to see the menu, and append:
+[LEAD_GENERATED: Name="<name>", Phone="<phone>", Date="<date>", Guests="<guests>"]
 """
-# =====================================================================
 
-# Model setup
+# Advanced Context Model Setup
 model = genai.GenerativeModel(
     model_name="gemini-2.5-flash",
     system_instruction=SYSTEM_PROMPT
 )
 
-def get_ai_response(user_message):
-    """Passes messages seamlessly to your updated Gemini matrix."""
-    try:
-        response = model.generate_content(user_message)
-        return response.text.strip()
-    except Exception as e:
-        print(f"Error matrix detail: {e}")
-        return "I apologize, I am facing a minor connection loop. Please connect with our manager via the direct number."
+# In-Memory Conversation State (Solves the "No Memory" issue)
+# Note: For massive scale, this would be moved to Redis.
+chat_sessions = {}
 
-# 1. Route for Website
-@app.route("/")
+# -------------------------------------------------------------------
+# 4. DATA SANITIZATION & VALIDATION
+# -------------------------------------------------------------------
+def sanitize_input(text):
+    """Removes HTML tags and limits length to prevent injection and buffer attacks."""
+    if not text:
+        return ""
+    text = text[:1000] # Hard limit on characters
+    clean_text = re.sub(r'<[^>]*>', '', text) # Strip HTML
+    return clean_text.strip()
+
+def extract_and_log_lead(ai_response):
+    """Detects the secret code from the AI, logs the business lead, and cleans the output."""
+    lead_pattern = r'\[LEAD_GENERATED:.*?\]'
+    lead_match = re.search(lead_pattern, ai_response)
+    
+    if lead_match:
+        lead_data = lead_match.group(0)
+        # In a real business, this saves to a Database or emails the Manager
+        logger.info(f"💰 NEW BUSINESS LEAD SECURED: {lead_data}")
+        
+        # Remove the internal code so the user doesn't see it
+        clean_response = re.sub(lead_pattern, '', ai_response).strip()
+        return clean_response
+    return ai_response
+
+# -------------------------------------------------------------------
+# 5. CORE API ROUTES
+# -------------------------------------------------------------------
+@app.route("/", methods=["GET"])
 def home():
+    # Ye command backend ko bolegi ki API text ki jagah UI design show karo
     return render_template("index.html")
 
-@app.route("/chat", methods=("POST",))
+@app.route("/chat", methods=["POST"])
+@limiter.limit("15 per minute") # Extra strict limit on the chat endpoint
 def chat():
-    user_message = request.json.get("message")
-    ai_reply = get_ai_response(user_message)
-    return jsonify({"reply": ai_reply})
+    start_time = datetime.now()
+    
+    # 1. Input Extraction & Validation
+    raw_message = request.json.get("message", "")
+    user_ip = get_remote_address()
+    
+    user_message = sanitize_input(raw_message)
+    if not user_message:
+        logger.warning(f"Empty or invalid request rejected from IP: {user_ip}")
+        return jsonify({"reply": "I could not process that. How may I assist you with The Golden Leaf menu today?"}), 400
 
-# 2. Route for WhatsApp Bot Webhook
-@app.route("/whatsapp", methods=("POST",))
-def whatsapp_reply():
-    incoming_msg = request.values.get('Body', '').strip()
-    ai_reply = get_ai_response(incoming_msg)
+    # 2. Memory Management (Load or Create Session)
+    if user_ip not in chat_sessions:
+        logger.info(f"Creating new conversation memory sequence for IP: {user_ip}")
+        chat_sessions[user_ip] = model.start_chat(history=[])
     
-    resp = MessagingResponse()
-    resp.message(ai_reply)
-    return str(resp)
+    session = chat_sessions[user_ip]
 
-# 3. Route for Phone Call Callbot
-@app.route("/voice", methods=("GET", "POST"))
-def voice_reply():
-    resp = VoiceResponse()
-    
-    if 'SpeechResult' in request.values:
-        user_speech = request.values.get('SpeechResult')
-        ai_reply = get_ai_response(user_speech)
-        resp.say(ai_reply, voice='alice', language='en-IN')
-    else:
-        resp.say("Welcome to The Grand Heritage Resort. How may I assist you with your luxury stay or wedding celebration today?", voice='alice', language='en-IN')
-    
-    gather = Gather(input='speech', action='/voice', timeout=3, language='en-IN')
-    resp.append(gather)
-    
-    return str(resp)
+    # 3. AI Execution & Error Handling
+    try:
+        logger.info(f"Processing request for IP: {user_ip} | Tokens approx: {len(user_message.split())}")
+        response = session.send_message(user_message)
+        
+        # 4. Lead Generation Interception
+        final_reply = extract_and_log_lead(response.text)
+        
+        # Analytics Tracking
+        execution_time = (datetime.now() - start_time).total_seconds()
+        logger.info(f"Response successfully delivered in {execution_time}s")
+        
+        return jsonify({"reply": final_reply})
+
+    except Exception as e:
+        # Segmented Error Handling
+        error_msg = str(e).lower()
+        if "quota" in error_msg or "exhausted" in error_msg:
+            logger.error("CRITICAL: Gemini API Quota Exceeded.")
+            return jsonify({"reply": "Our reservation desk is currently experiencing high volume. Please call us directly to book your table."}), 503
+        else:
+            logger.error(f"Internal System Error: {str(e)}")
+            return jsonify({"reply": "I am undergoing a brief system optimization. Please contact our manager at +1 (555) 234-5678 for immediate assistance."}), 500
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
